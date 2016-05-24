@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>cocapods安装的步骤 | Luna’s Blog</title>
+  <title>UIAlertViewController | Luna’s Blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -226,69 +226,70 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-05-23T12:43:34.000Z" itemprop="datePublished">
-          2016-05-23
+      <time datetime="2016-05-24T10:49:30.000Z" itemprop="datePublished">
+          2016-05-24
       </time>
     
 </span>
-                <h1>cocapods安装的步骤</h1>
+                <h1>UIAlertViewController</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>1.移除现有Ruby默认源</p>
-<p>$gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a></p>
-<p>2.使用新的源</p>
-<p>$gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a></p>
-<p>3.验证新源是否替换成功</p>
-<p>$gem sources -l</p>
-<p>4.安装CocoaPods</p>
-<p>(1) $sudo gem install cocoapods<br>备注：苹果系统升级 OS X EL Capitan 后改为 $sudo gem install -n /usr/local/bin cocoapods</p>
-<p>(2) $pod setup</p>
-<p>5.更新gem</p>
-<p>$sudo gem update –system</p>
-<p>6.新建工程，并在终端用cd指令到文件夹内</p>
-<p>$pod search 第三方</p>
-<p>7.新建文件 vim “Podfile”，</p>
-<p>$vim Podfile</p>
-<p>写入以下内容并保存 小提示：（终端vim文件 按 i 可编辑 ，esc 退出编辑，：wq  可保存退出）</p>
-<p>platform:ios, ‘6.0’</p>
-<p>pod ‘AFNetworking’, ‘~&gt; 2.3.1’    &lt;——-第三方</p>
-<p>8.导入第三方库</p>
-<p>$pod install</p>
-<p>9.退出终端</p>
-<p>以下是我用以前的安装流程安装时出现的一些错误</p>
-<p>终端  cocoapods 下载bug调试：</p>
-<p>错误1：</p>
-<p>Error fetching <a href="http://ruby.taobao.org/" target="_blank" rel="external">http://ruby.taobao.org/</a>:</p>
-<p>bad response Not Found 404 (<a href="http://ruby.taobao.org/specs.4.8.gz" target="_blank" rel="external">http://ruby.taobao.org/specs.4.8.gz</a>)</p>
-<p>解决方案：把安装流程中 $gem sources -a <a href="http://ruby.taobao.org/" target="_blank" rel="external">http://ruby.taobao.org/</a>   —改为—-&gt; $gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a></p>
-<p>错误2：</p>
-<p>ERROR:  While executing gem … (Errno::EPERM)</p>
-<p>Operation not permitted - /usr/bin/pod</p>
-<p>解决方案：苹果系统升级OS X EL Capitan后会出现的插件错误，将安装流程 4.安装CocoaPods 的 (1)sudo gem install cocoapods ——&gt;改为sudo gem install -n /usr/local/bin cocoapods</p>
-<p>错误3：</p>
-<p>[!] Unable to satisfy the following requirements: - <code>AVOSCloud (~&gt; 3.1.6.3)</code> required by <code>Podfile</code></p>
-<p>Specs satisfying the <code>AVOSCloud (~&gt; 3.1.6.3)</code> dependency were found, but they required a higher minimum deployment target.</p>
-<p>解决方案：安装流程：Podfile文件 中   platform:ios, ‘6.0’  后边的 6.0 是平台版本号 ，一定要加上</p>
+      		<p>  在Xcode的iOS8 SDK中，UIAlertView和UIActionSheet都被UIAlertController取代。官方库解释：“UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead.”、“UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead.”。说明了在iOS8+开发，UIALertView和UIActionSheet已经过时了，UIAlertController以一种模块化替换的方式来代替这两这两个控件的功能和作用。</p>
+<ul>
+<li><p>(IBAction)buttonClickAction:(id)sender {</p>
+<pre><code>  iOS 8.0之前 UIAlertView
+  UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@&quot;提示&quot; message:@&quot;密码错误&quot; delegate:self cancelButtonTitle:@&quot;返回&quot; otherButtonTitles:@&quot;继续&quot;,@&quot;更改密码&quot;,@&quot;忘记密码&quot;, nil];
+ &lt;UIAlertViewDelegate&gt;
+  弹出alertView
+[alertView show];
+ 指定代理
+  alertView.delegate = self;
+</code></pre><p>/*</p>
+<pre><code>设置UIAlertController选择风格样式
+1、创建UIAlertController；
+2、初始化UIAlertController，需要使用alertControllerWithTitle：message：preferredStyle：方法；
+3、设置Title、message 、preferredStyle；
+4、preferredStyle风格样式有两种：UIAlertControllerStyleAlert和UIAlertControllerStyleActionSheet，是分别代表要代替的UIAlertView和UIActionSheet。
+*/
+</code></pre><p> UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@”警告” message:@”你真的要看吗？” preferredStyle:(UIAlertControllerStyleAlert)];<br>//        添加文本框</p>
+<pre><code>[alertVC addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+}];
+</code></pre><p>//        添加方法</p>
+<pre><code>[alertVC addAction:[UIAlertAction actionWithTitle:@&quot;确定返回&quot; style:(UIAlertActionStyleDestructive) handler:^(UIAlertAction * _Nonnull action) {
+    NSLog(@&quot;%@&quot;,alertVC.textFields[0].text);
+</code></pre><p>//            返回模态</p>
+<pre><code>    [self dismissViewControllerAnimated:YES completion:nil];
+}]];
+
+[alertVC addAction:[UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    NSLog(@&quot;%@&quot;,alertVC.textFields[0].text);
+    [self dismissViewControllerAnimated:YES completion:nil];
+}]];
+[self presentViewController:alertVC animated:YES completion:nil];
+</code></pre><p>}</p>
+</li>
+</ul>
+<p>//代理方法<br>-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{<br>    switch (buttonIndex) {<br>        case 0:<br>            NSLog(@”返回”);<br>            break;<br>            case 1:<br>            NSLog(@”继续”);<br>            break;<br>        case 2:<br>            NSLog(@”更改密码”);<br>            break;<br>        case 3:<br>            NSLog(@”忘记密码”);<br>            break;</p>
+<pre><code>    default:
+        break;
+}
+</code></pre><p>}</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/05/24/UIAlertViewController/" style="float: left;">
-        ← UIAlertViewController
-    </a>
     
-    
-    <a class="pull-right" href="/2016/05/23/hello-world/">
-        Hello World →
+    <a class="pull-right" href="/2016/05/23/cocapods安装的步骤 /">
+        cocapods安装的步骤 →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/05/23/cocapods安装的步骤 /" data-title="cocapods安装的步骤" data-url="http://yoursite.com/2016/05/23/cocapods安装的步骤 /"></div>
+<div class="ds-thread" data-thread-key="2016/05/24/UIAlertViewController/" data-title="UIAlertViewController" data-url="http://yoursite.com/2016/05/24/UIAlertViewController/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
