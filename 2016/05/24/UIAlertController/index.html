@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Luna’s Blog</title>
+  <title>UIAlertController | Luna’s Blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -220,123 +220,67 @@
         <!-- // End height spacing helper -->
 
         <!-- ============================ END Hero Image =========================== -->
-      <!-- ============================ Content =========================== -->
-
+      
 <section id="intro">
     <div class="container">
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/05/24/UIAlertController/">UIAlertController</a></h3>
-                    <span>
-                        <span class="post-meta">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
       <time datetime="2016-05-24T10:49:30.000Z" itemprop="datePublished">
           2016-05-24
       </time>
     
 </span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        //    在Xcode的iOS8 SDK中，UIAlertView和UIActionSheet都被UIAlertController取代。官方库解释：“UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead.”、“UIActionSheet is deprecated. U
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/05/24/UIAlertController/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
+                <h1>UIAlertController</h1>
             </div>
         </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/05/23/cocapods安装的步骤 /">cocapods安装的步骤</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-05-23T12:43:34.000Z" itemprop="datePublished">
-          2016-05-23
-      </time>
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        1.移除现有Ruby默认源
-$gem sources –remove https://rubygems.org/
-2.使用新的源
-$gem sources -a https://ruby.taobao.org/
-3.验证新源是否替换成功
-$gem sources -l
-4.安装CocoaPods
-(1) $sudo gem install cocoapods备注：苹果系统升级 OS X EL Capitan 后改为 $sudo gem 
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/05/23/cocapods安装的步骤 /">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>//    在Xcode的iOS8 SDK中，UIAlertView和UIActionSheet都被UIAlertController取代。官方库解释：“UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead.”、“UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead.”。说明了在iOS8+开发，UIALertView和UIActionSheet已经过时了，UIAlertController以一种模块化替换的方式来代替这两这两个控件的功能和作用。</p>
+<ul>
+<li>(IBAction)buttonClickAction:(id)sender {</li>
+</ul>
+<p>//        iOS 8.0之前 UIAlertView<br>        UIAlertView <em>alertView = [[UIAlertView alloc]initWithTitle:@”提示” message:@”密码错误” delegate:self cancelButtonTitle:@”返回” otherButtonTitles:@”继续”,@”更改密码”,@”忘记密码”, nil];<br>       <uialertviewdelegate><br>//        弹出alertView<br>        [alertView show];<br>//        指定代理<br>        alertView.delegate = self;<br> /</uialertviewdelegate></em><br>         设置UIAlertController选择风格样式<br>         1、创建UIAlertController；<br>         2、初始化UIAlertController，需要使用alertControllerWithTitle：message：preferredStyle：方法；<br>         3、设置Title、message 、preferredStyle；<br>         4、preferredStyle风格样式有两种：UIAlertControllerStyleAlert和UIAlertControllerStyleActionSheet，是分别代表要代替的UIAlertView和UIActionSheet。<br>         <em>/<br>   UIAlertController </em>alertVC = [UIAlertController alertControllerWithTitle:@”警告” message:@”你真的要看吗？” preferredStyle:(UIAlertControllerStyleAlert)];<br>//        添加文本框<br>        [alertVC addTextFieldWithConfigurationHandler:^(UITextField <em> _Nonnull textField) {<br>        }];<br>//        添加方法<br>        [alertVC addAction:[UIAlertAction actionWithTitle:@”确定返回” style:(UIAlertActionStyleDestructive) handler:^(UIAlertAction </em> _Nonnull action) {<br>            NSLog(@”%@”,alertVC.textFields[0].text);<br>//            返回模态<br>            [self dismissViewControllerAnimated:YES completion:nil];<br>        }]];</p>
+<pre><code>[alertVC addAction:[UIAlertAction actionWithTitle:@&quot;取消&quot; style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    NSLog(@&quot;%@&quot;,alertVC.textFields[0].text);
+    [self dismissViewControllerAnimated:YES completion:nil];
+}]];
+[self presentViewController:alertVC animated:YES completion:nil];
+</code></pre><p>}</p>
+<p>//代理方法<br>-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{<br>    switch (buttonIndex) {<br>        case 0:<br>            NSLog(@”返回”);<br>            break;<br>            case 1:<br>            NSLog(@”继续”);<br>            break;<br>        case 2:<br>            NSLog(@”更改密码”);<br>            break;<br>        case 3:<br>            NSLog(@”忘记密码”);<br>            break;</p>
+<pre><code>    default:
+        break;
+}
+</code></pre><p>}</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/05/23/hello-world/">Hello World</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-05-23T12:22:44.000Z" itemprop="datePublished">
-          2016-05-23
-      </time>
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new p
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/05/23/hello-world/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
         <nav class="pagination" role="pagination">
-          
-          
-        </nav>
+    
+    
+    <a class="pull-right" href="/2016/05/23/cocapods安装的步骤 /">
+        cocapods安装的步骤 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/05/24/UIAlertController/" data-title="UIAlertController" data-url="http://yoursite.com/2016/05/24/UIAlertController/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>未来的路还很长，我不怕没人陪，只怕努力过后你未来到。</p>
-        </div>
-    </div>
-</section>
-<!-- ============================ END Content =========================== -->
+
 
       
 <!-- ============================ Footer =========================== -->
