@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>FirstDay | Luna’s Blog</title>
+  <title>cocapods安装的步骤 | Luna’s Blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -203,7 +203,7 @@
                                 <p></p>
 				    			
                                 <h2></h2>
-                                <p>每一个不曾起舞的日子都是对生命的辜负。</p>
+                                <p>不为失败找借口，只为成功找方法。</p>
 				    			
 
                             </div>
@@ -231,11 +231,20 @@
       </time>
     
 </span>
-                <h1>FirstDay</h1>
+                <h1>cocapods安装的步骤</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<p>1 检测 gem 镜像文件<br>     gem sources -l</p>
+<p>2 删除原有的镜像地址<br>     gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a></p>
+<p>3 添加淘宝镜像地址<br>      gem sources –add <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a></p>
+<p>4 更新gem库关联<br>     gem update –system</p>
+<p>5 安装 cocoapods<br>     gem install cocapods//是第一版本，高版本的，需要额外加参数<br>     sudo gem install -n /usr/local/bin cocoapods</p>
+<p>6 更新pod库<br>     pod update<br>     pod setup</p>
+<p>7 编写Podfile文件<br>     platform:ios,’9.3’<br>     target’SeniorLesson18 - cocoaPods’do<br>     pod ‘AFNetworking’<br>     pod ‘FMDB’<br>     pod ‘SDWebImage’<br>     end</p>
+<p>8 安装第三方类库<br>     pod install</p>
+<p>9 如果第三方类库出现新版本，需要更新<br>     pod update</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
@@ -249,7 +258,7 @@
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/05/23/FirstDay/" data-title="FirstDay" data-url="http://yoursite.com/2016/05/23/FirstDay/"></div>
+<div class="ds-thread" data-thread-key="2016/05/23/cocapods安装的步骤 /" data-title="cocapods安装的步骤" data-url="http://yoursite.com/2016/05/23/cocapods安装的步骤 /"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
