@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives: 2016 | Luna’s Blog</title>
+  <title>Luna’s Blog</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -221,64 +221,68 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/05/24/#include、#import、@class三者的区别/"></a></h4>
-                            
-                            <p><time datetime="2016-05-24T11:13:20.000Z"><a href="/2016/05/24/#include、#import、@class三者的区别/">2016-05-24</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/05/24/UIAlertViewController/">UIAlertViewController</a></h4>
-                            
-                            <p><time datetime="2016-05-24T10:49:30.000Z"><a href="/2016/05/24/UIAlertViewController/">2016-05-24</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/05/23/cocapods安装的步骤 /">cocapods安装的步骤</a></h4>
-                            
-                            <p><time datetime="2016-05-23T12:43:34.000Z"><a href="/2016/05/23/cocapods安装的步骤 /">2016-05-23</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/05/23/hello-world/">Hello World</a></h4>
-                            
-                            <p><time datetime="2016-05-23T12:22:44.000Z"><a href="/2016/05/23/hello-world/">2016-05-23</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-05-24T11:13:20.000Z" itemprop="datePublished">
+          2016-05-24
+      </time>
+    
+</span>
+                <h1></h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p> #include是C语言里边的导入头文件引用，但是不能解决重复引用的问题</p>
+<p> #import作用和#include基本相同，但是解决了重复引用的问题，支持OC里边的头文件引用（参与编译，包含类的实类变量和方法）</p>
+<p> @class声明一个类的存在，但是不参与编译</p>
+<p> setter方法内部使用点语法会造成死循环</p>
+<ul>
+<li>Category类目<br>· 类目category:使用类目为一个类添加方法</li>
+<li>· 类目不能添加实类变量<br>· 子类继承的时候，也会将类目里的方法继承过去</li>
+</ul>
+<p>Category的作用：<br>Category：也叫分类，类目。是为没有源代码的类的扩充功能。<br>扩充的功能会成为原因类的一部分，可以通过原有类或者原有类的对象直接调用，并且可以继承。<br>该方法只能扩充方法，不能扩充实例变量。</p>
+<p>Extension延展<br>· 在.m里面写延展，里面的实例变量和方法都是私有的<br>· 书写格式：<br>@interface &lt;#class name#&gt; ()</p>
+<p>@end</p>
+<p>delegate的设计步骤：<br>步骤1 ：<br>委托定制一套协议（在委托当的.h文件中），协议中声明委托方需要让代理执行的方法（只有方法声明）。<br>步骤2：<br>委托方声明一个delegate属性（assign修饰），存储代理方对象。<br>步骤3：<br>代理方需要遵循协议，并且对协议中的方法进行实现。<br>步骤4：<br>将代理方设置为委托方的代理人（将代理方对象赋值给委托方对象的delegate属性，进行存储）。<br>步骤5：<br>委托方在合适的实际通知代理方对象进行相应的操作。</p>
+<ul>
+<li>respondsToSelector</li>
+<li>该方法用来判断对象是否能够对选定的某一方法做出响应</li>
+</ul>
+<p>总结：<br>1 为不能获取源代码的类，添加方法，使用Catagory<br>2 为可以获取到源代码的类，添加私有的方法和实例变量，使用Extension<br>3 当某些任务我们不想自己去实现，想让别人去实现的时候，就可以使用代理设计模式。</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>未来的路还很长，我不怕没人陪，只怕努力过后你未来到。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/05/24/UIAlertViewController/">
+        UIAlertViewController →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/05/24/#include、#import、@class三者的区别/" data-title="" data-url="http://yoursite.com/2016/05/24/#include、#import、@class三者的区别/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 

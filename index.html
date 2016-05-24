@@ -228,10 +228,10 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
-                    <h3><a href="/2016/05/24/几种常用的传值方式/">几种常用的传值方式</a></h3>
+                    <h3><a href="/2016/05/24/#include、#import、@class三者的区别/"></a></h3>
                     <span>
                         <span class="post-meta">
-      <time datetime="2016-05-24T10:58:44.000Z" itemprop="datePublished">
+      <time datetime="2016-05-24T11:13:20.000Z" itemprop="datePublished">
           2016-05-24
       </time>
     
@@ -241,14 +241,18 @@
                 <div class="col-md-8">
                     <p>
                       
-                        属性传值：属性传值多用于从前往后传值
-协议传值（代理传值）：第一步：声明协议代理第二步：声明代理人第三步：执行协议方法第四步：签订协议第五步：实现协议方法/var/folders/k2/x210mb811fl3y0t4196gcqfm0000gn/T/com.evernote.Evernote/com.evernote.Evernote/WebKitDnD.9Kn4lJ/1.png
-/var/folders/k2/x210mb811fl
+                         #include是C语言里边的导入头文件引用，但是不能解决重复引用的问题
+ #import作用和#include基本相同，但是解决了重复引用的问题，支持OC里边的头文件引用（参与编译，包含类的实类变量和方法）
+ @class声明一个类的存在，但是不参与编译
+ setter方法内部使用点语法会造成死循环
+
+Category类目· 类目category:使用类目为一个类添加方法
+· 类目不能添加实类变量· 子类继承的时候，也会将类目里的方
                       
                     </p>
                     
                     <p class="pull-right readMore">
-                        <a href="/2016/05/24/几种常用的传值方式/">Read More...</a>
+                        <a href="/2016/05/24/#include、#import、@class三者的区别/">Read More...</a>
                     </p>
                     
                 </div>
