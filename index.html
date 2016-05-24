@@ -241,11 +241,14 @@
                 <div class="col-md-8">
                     <p>
                       
-                        1 检测 gem 镜像文件     gem sources -l
-2 删除原有的镜像地址     gem sources –remove https://rubygems.org/
-3 添加淘宝镜像地址      gem sources –add https://ruby.taobao.org/
-4 更新gem库关联     gem update –system
-5 安装 cocoapods     gem install cocapo
+                        1.移除现有Ruby默认源
+$gem sources –remove https://rubygems.org/
+2.使用新的源
+$gem sources -a https://ruby.taobao.org/
+3.验证新源是否替换成功
+$gem sources -l
+4.安装CocoaPods
+(1) $sudo gem install cocoapods备注：苹果系统升级 OS X EL Capitan 后改为 $sudo gem 
                       
                     </p>
                     

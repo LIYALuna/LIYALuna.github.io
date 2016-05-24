@@ -235,15 +235,41 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>1 检测 gem 镜像文件<br>     gem sources -l</p>
-<p>2 删除原有的镜像地址<br>     gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a></p>
-<p>3 添加淘宝镜像地址<br>      gem sources –add <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a></p>
-<p>4 更新gem库关联<br>     gem update –system</p>
-<p>5 安装 cocoapods<br>     gem install cocapods//是第一版本，高版本的，需要额外加参数<br>     sudo gem install -n /usr/local/bin cocoapods</p>
-<p>6 更新pod库<br>     pod update<br>     pod setup</p>
-<p>7 编写Podfile文件<br>     platform:ios,’9.3’<br>     target’SeniorLesson18 - cocoaPods’do<br>     pod ‘AFNetworking’<br>     pod ‘FMDB’<br>     pod ‘SDWebImage’<br>     end</p>
-<p>8 安装第三方类库<br>     pod install</p>
-<p>9 如果第三方类库出现新版本，需要更新<br>     pod update</p>
+      		<p>1.移除现有Ruby默认源</p>
+<p>$gem sources –remove <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a></p>
+<p>2.使用新的源</p>
+<p>$gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a></p>
+<p>3.验证新源是否替换成功</p>
+<p>$gem sources -l</p>
+<p>4.安装CocoaPods</p>
+<p>(1) $sudo gem install cocoapods<br>备注：苹果系统升级 OS X EL Capitan 后改为 $sudo gem install -n /usr/local/bin cocoapods</p>
+<p>(2) $pod setup</p>
+<p>5.更新gem</p>
+<p>$sudo gem update –system</p>
+<p>6.新建工程，并在终端用cd指令到文件夹内</p>
+<p>$pod search 第三方</p>
+<p>7.新建文件 vim “Podfile”，</p>
+<p>$vim Podfile</p>
+<p>写入以下内容并保存 小提示：（终端vim文件 按 i 可编辑 ，esc 退出编辑，：wq  可保存退出）</p>
+<p>platform:ios, ‘6.0’</p>
+<p>pod ‘AFNetworking’, ‘~&gt; 2.3.1’    &lt;——-第三方</p>
+<p>8.导入第三方库</p>
+<p>$pod install</p>
+<p>9.退出终端</p>
+<p>以下是我用以前的安装流程安装时出现的一些错误</p>
+<p>终端  cocoapods 下载bug调试：</p>
+<p>错误1：</p>
+<p>Error fetching <a href="http://ruby.taobao.org/" target="_blank" rel="external">http://ruby.taobao.org/</a>:</p>
+<p>bad response Not Found 404 (<a href="http://ruby.taobao.org/specs.4.8.gz" target="_blank" rel="external">http://ruby.taobao.org/specs.4.8.gz</a>)</p>
+<p>解决方案：把安装流程中 $gem sources -a <a href="http://ruby.taobao.org/" target="_blank" rel="external">http://ruby.taobao.org/</a>   —改为—-&gt; $gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="external">https://ruby.taobao.org/</a></p>
+<p>错误2：</p>
+<p>ERROR:  While executing gem … (Errno::EPERM)</p>
+<p>Operation not permitted - /usr/bin/pod</p>
+<p>解决方案：苹果系统升级OS X EL Capitan后会出现的插件错误，将安装流程 4.安装CocoaPods 的 (1)sudo gem install cocoapods ——&gt;改为sudo gem install -n /usr/local/bin cocoapods</p>
+<p>错误3：</p>
+<p>[!] Unable to satisfy the following requirements: - <code>AVOSCloud (~&gt; 3.1.6.3)</code> required by <code>Podfile</code></p>
+<p>Specs satisfying the <code>AVOSCloud (~&gt; 3.1.6.3)</code> dependency were found, but they required a higher minimum deployment target.</p>
+<p>解决方案：安装流程：Podfile文件 中   platform:ios, ‘6.0’  后边的 6.0 是平台版本号 ，一定要加上</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
